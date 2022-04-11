@@ -119,6 +119,7 @@ width: 36px;
 height: 65px;
 left: 27px;
 top: 11px;
+overflow: hidden;
 }
 
 .cola_violet_btn{
@@ -131,7 +132,11 @@ top: 11px;
     border-radius: 10px;
     border: 3px solid #6327FE;
     background-color: white;
+    
+    
 }
+
+
 
 .cola_name_violet{
     position: absolute;
@@ -512,4 +517,178 @@ filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.5));
 border-radius: 5px;
 background: #FFFFFF;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cola_get_container{
+    position: absolute;
+width: 200px;
+height: 106px;
+left: 27px;
+bottom: 28px;
+
+/* Gray 4 */
+
+border: 1px solid #BDBDBD;
+box-sizing: border-box;
+border-radius: 5px;
+background: #EAE8FE;
+}
+
+.cola_get_container{
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.cola_get_original{
+    position: absolute;
+width: 170px;
+height: 46px;
+left: 12px;
+top: 12px;
+
+background: #FFFFFF;
+border-radius: 5px;
+}
+.cola_get_ori_img{
+    position: absolute;
+    left: 10px;
+    top: 6px;
+}
+
+.cola_get_name_ori{
+    position: absolute;
+    width: 73px;
+    height: 10px;
+    left: 38px;
+    top: 18px;
+    
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 13px;
+    display: flex;
+    align-items: center;
+    
+    /* Gray 1 */
+    
+    color: #333333;
+}
+
+.cola_get_count_ori{
+    position: absolute;
+width: 30px;
+height: 30px;
+left: 132px;
+top: 8px;
+
+/* Gray 4 */
+
+border: 1px solid #BDBDBD;
+box-sizing: border-box;
+border-radius: 5px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 20px;
+display: flex;
+align-items: center;
+text-align: center;
+justify-content: center;
+
+color: #000000;
+
+}
+
+.cola_get_green{
+    position: absolute;
+    width: 170px;
+    height: 46px;
+    left: 12px;
+    top: 64px;
+    
+    border-radius: 5px;
+    background: #FFFFFF;
+}
+
+.cola_get_green_img{
+    position: absolute;
+width: 18px;
+height: 33px;
+left: 10px;
+top: 6px;
+}
+
+.cola_get_name_green{
+    position: absolute;
+width: 73px;
+height: 10px;
+left: 38px;
+top: 18px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 500;
+font-size: 9px;
+line-height: 13px;
+display: flex;
+align-items: center;
+
+/* Gray 1 */
+
+color: #333333;
+}
+
+
+.cola_get_count_green{
+    position: absolute;
+width: 30px;
+height: 30px;
+left: 132px;
+top: 8px;
+
+/* Gray 4 */
+
+border: 1px solid #BDBDBD;
+box-sizing: border-box;
+border-radius: 5px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 20px;
+display: flex;
+align-items: center;
+text-align: center;
+justify-content: center;
+
+color: #000000;
+
+}
+
+.cola_get_btn{
+    position: absolute;
+width: 94px;
+height: 106px;
+left: 239px;
+bottom: 28px;
+
+background: #6327FE;
+box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+border-radius: 5px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 700;
+font-size: 13px;
+line-height: 19px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+color: #FFFFFF;
 }
