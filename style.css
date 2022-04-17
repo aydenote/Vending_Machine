@@ -168,7 +168,7 @@ article.con-getCola{
     border: 1px solid #BDBDBD;
     border-radius: 5px;
     background: #EAE8FE;
-    padding: 12px 18px 0 12px;
+    padding: 12px 10px 0 12px;
 }
 
 
@@ -263,4 +263,82 @@ article.con-getCola::-webkit-scrollbar-track {
     padding-left: 180px;
     width: 87px;
     line-height: 32px;
+}
+
+.con-getResult{
+    position: absolute;
+    width: 360px;
+    height: 474px;
+    left: 974px;
+    top: 318px;
+    background-color: #FFFFFF;
+}
+
+.txt-getColaName{
+    margin: 25px auto 13px;
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    color: #000000;
+}
+
+.con-getCola.result{
+    width: 306px;
+    height: 364px;
+    margin: 0 27px;
+    overflow-y: scroll;
+}
+
+
+.con-getCola.result::-webkit-scrollbar {
+    width: 4px;  /* 스크롤바의 너비 */
+
+}
+
+.con-getCola.result::-webkit-scrollbar-thumb {
+    height: 79%; /* 스크롤바의 길이 */
+    background: #FFFFFF;
+    border-radius: 50px;
+}
+
+.con-getCola.result::-webkit-scrollbar-track {
+    background: #EAE8FE; /*스크롤바 뒷 배경*/
+}
+
+
+.txt-totalPrice{
+    width: 109px;
+    height: 20px;
+    margin: 6px 27px 26px 0;
+    float: right;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 17px;
+    color: #000000;
+    text-align: right;
+}
+
+.con-cola.result{
+    width: 276px;
+    height: 46px;
+    background: #FFFFFF;
+}
+/* .txt-totalPrice::before {
+
+}*/
+
+/* .txt-totalPrice::after {
+
+}*/
+
+@media screen and (min-width: 360px) {
+    body{
+        display: flex;
+        flex-direction: column;
+    }
+    
 }
