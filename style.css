@@ -26,7 +26,7 @@ header{
     height: 545px;
     background: #FFFFFF;
     top:247px;
-    left:586px
+    left:586px;
 }
 
 li{
@@ -46,7 +46,8 @@ li{
 }
 
 .img-original, .img-cool, .img-green, .img-orange, .img-violet,.img-yellow{
-    margin: 11px 29px 6px;
+    margin: 11px 29px 6px;   
+    
 }
 
 .txt-colaName{
@@ -335,10 +336,33 @@ article.con-getCola::-webkit-scrollbar-track {
 
 }*/
 
-@media screen and (min-width: 360px) {
-    body{
-        display: flex;
-        flex-direction: column;
+@media screen and (max-width: 360px) {
+    html, body{
+        position: absolute;
+        width: 360px;
+        height: 1141px;
+        background-color: #FFFFFF;
+    }
+    header{
+        width: 188px;
+        height: 88px;
+        margin: auto;
+    }
+    header>img{
+        width: 166px;
+        height: 78px;
+    }
+    header, .con-main, .con-money, .con-getResult {
+        position: static;
+    }
+    .list-cola{
+        margin-top: 0;
+    }
+    .con-main{
+        height: 500px;
+    }
+    .txt-money{
+        margin-top: 20px;
     }
     
 }
