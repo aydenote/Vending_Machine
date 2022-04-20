@@ -3,6 +3,7 @@
 
 *{
     box-sizing: border-box;
+    caret-color: transparent;
 }
 
 
@@ -195,7 +196,7 @@ article.con-getCola::-webkit-scrollbar-track {
     background: #EAE8FE; /*스크롤바 뒷 배경*/
 }
 .con-cola{
-    width: 170px;
+    width: 100%;
     height: 46px;
     margin-bottom: 6px;
     background: #FFFFFF;
@@ -326,12 +327,6 @@ article.con-getCola::-webkit-scrollbar-track {
     line-height: 17px;
     color: #000000;
     text-align: right;
-}
-
-.con-cola.result{
-    width: 276px;
-    height: 46px;
-    background: #FFFFFF;
 }
 
 @media screen and (max-width: 360px) {
