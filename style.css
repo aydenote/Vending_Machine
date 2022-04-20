@@ -8,25 +8,25 @@
 
 
 html, body{
-    width: 1920px;
-    height: 963px;
     background: #EAE8FE;
 }
 
-header{
-    position: absolute;
-    width: 436px;
-    height: 204px;
-    left: 742px;
-    top: 0px;
+header{   
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:0 28px;
+    padding-bottom: 30px;
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 .con-main{
-    position: absolute;
     width: 360px;
     background: #FFFFFF;
-    top:247px;
-    left:586px;
 }
 
 li{
@@ -37,7 +37,9 @@ li{
     border-radius: 10px;
     text-align: center;
 }
-
+.soldout{
+    pointer-events: none;
+}
 .list-violet::before{
     content: "";
     width: 94px;
@@ -49,12 +51,25 @@ li{
     background-image: url(./images/sold_out.svg);
     border-radius: 10px;
     text-align: center;
+    ;
 }
 
 .list-cola{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin: 31px 27px 10px;
+}
+
+.list-cola li:active::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 3px solid #6327fe;
+    border-radius: 10px;
+    box-sizing: border-box;
 }
 
 .img-original, .img-cool, .img-green, .img-orange, .img-violet,.img-yellow{
@@ -241,18 +256,15 @@ article.con-getCola::-webkit-scrollbar-track {
     border-radius: 5px;
 }
 
-.con-money{
-    position: absolute;
-    width: 360px;
-    left: 974px;
-    top: 248px;
-    background: #FFFFFF;
+.btn-getCola:hover{
+    cursor: pointer;
 }
+
 .txt-money{
     width: 306px;
-    margin: 9px 27px;
     border-radius: 5px;
     
+    padding: 6px 0;
     font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
     font-weight: 500;
@@ -274,15 +286,12 @@ article.con-getCola::-webkit-scrollbar-track {
 }
 
 .con-getResult{
-    position: absolute;
-    width: 360px;
-    left: 974px;
-    top: 318px;
-    background-color: #FFFFFF;
+    width: 360px;    
+    background-color: #eae8fe;
 }
 
 .txt-getColaName{
-    margin: 25px auto 13px;
+    margin: 0 auto 13px;
     text-align: center;
     font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
@@ -314,12 +323,9 @@ article.con-getCola::-webkit-scrollbar-track {
     background: #EAE8FE; /*스크롤바 뒷 배경*/
 }
 
-
 .txt-totalPrice{
-    width: 109px;
-    height: 20px;
-    margin: 23px 27px 26px 0;
-    float: right;
+    padding-right: 27px;
+    margin-top: 10px;
     font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
     font-weight: 500;
@@ -329,33 +335,27 @@ article.con-getCola::-webkit-scrollbar-track {
     text-align: right;
 }
 
-@media screen and (max-width: 360px) {
-    html, body{
-        position: absolute;
-        width: 360px;
-        height: 1141px;
-        background-color: #FFFFFF;
-    }
-    header{
-        width: 188px;
-        height: 88px;
-        margin: auto;
-    }
-    header>img{
+.con-money{
+    padding: 9px 27px;
+    background-color: #ffffff;
+}
+.con-result{
+    margin-top: 20px;
+    padding: 25px 0 32px;
+    background-color: #ffffff;
+}
+
+@media screen and (max-width: 764px) {
+    body {
+        background-color: #fff;
+      }
+
+    header img{
         width: 166px;
-        height: 78px;
-    }
-    header, .con-main, .con-money, .con-getResult {
-        position: static;
-    }
-    .list-cola{
+        height: 70px;
+      }
+    .con-result{
         margin-top: 0;
-    }
-    .con-main{
-        height: 500px;
-    }
-    .txt-money{
-        margin-top: 20px;
     }
     
 }
