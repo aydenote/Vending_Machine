@@ -23,7 +23,6 @@ header{
 .con-main{
     position: absolute;
     width: 360px;
-    height: 545px;
     background: #FFFFFF;
     top:247px;
     left:586px;
@@ -31,7 +30,6 @@ header{
 
 li{
     width: 94px;
-    height: 130px;
     margin: 0 12px 12px 0;
     background: #FFFFFF;
     filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.5));
@@ -39,10 +37,23 @@ li{
     text-align: center;
 }
 
+.list-violet::before{
+    content: "";
+    width: 94px;
+    height: 135px;
+    position: absolute;
+    margin: 0 12px 12px 0;
+    background: black;
+    opacity: .7;
+    background-image: url(./images/sold_out.svg);
+    border-radius: 10px;
+    text-align: center;
+}
+
 .list-cola{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    margin: 31px 27px 20px;
+    margin: 31px 27px 10px;
 }
 
 .img-original, .img-cool, .img-green, .img-orange, .img-violet,.img-yellow{
@@ -52,7 +63,6 @@ li{
 
 .txt-colaName{
     width: 73px;
-    height: 10px;
     margin: 0px 10px 7px 11px;
     font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
@@ -64,7 +74,6 @@ li{
 
 .txt-price{
     width: 70px;
-    height: 22px;
     padding: 5px 16px 5px 15px;
     margin: 0 11px 9px 13px;
     border-radius: 50px;
@@ -80,7 +89,6 @@ li{
 .txt-balance{
     display: inline-block;
     width: 200px;
-    height: 33px;
     line-height: 33px;
     margin: 0 12px 11px 27px;
     border-radius: 5px;
@@ -161,11 +169,11 @@ li{
 
 article.con-getCola{
     display: inline-block;
+    width: 200px;
+    height: 120px;
     overflow-y: scroll;
     overflow-x: hidden;
-    width: 200px;
-    height: 106px;
-    margin: 0 12px 28px 27px;
+    margin: 0 12px 15px 27px;
     border: 1px solid #BDBDBD;
     border-radius: 5px;
     background: #EAE8FE;
@@ -235,14 +243,12 @@ article.con-getCola::-webkit-scrollbar-track {
 .con-money{
     position: absolute;
     width: 360px;
-    height: 50px;
     left: 974px;
     top: 248px;
     background: #FFFFFF;
 }
 .txt-money{
     width: 306px;
-    height: 32px;
     margin: 9px 27px;
     border-radius: 5px;
     
@@ -269,7 +275,6 @@ article.con-getCola::-webkit-scrollbar-track {
 .con-getResult{
     position: absolute;
     width: 360px;
-    height: 474px;
     left: 974px;
     top: 318px;
     background-color: #FFFFFF;
@@ -312,7 +317,7 @@ article.con-getCola::-webkit-scrollbar-track {
 .txt-totalPrice{
     width: 109px;
     height: 20px;
-    margin: 6px 27px 26px 0;
+    margin: 23px 27px 26px 0;
     float: right;
     font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
@@ -328,13 +333,6 @@ article.con-getCola::-webkit-scrollbar-track {
     height: 46px;
     background: #FFFFFF;
 }
-/* .txt-totalPrice::before {
-
-}*/
-
-/* .txt-totalPrice::after {
-
-}*/
 
 @media screen and (max-width: 360px) {
     html, body{
