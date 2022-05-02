@@ -40,7 +40,7 @@ li{
 .soldout{
     pointer-events: none;
 }
-.list-violet::before{
+.list-violet.soldout::before{
     content: "";
     width: 94px;
     height: 135px;
@@ -351,8 +351,8 @@ article.con-getCola::-webkit-scrollbar-track {
       }
 
     header img{
-        width: 166px;
-        height: 70px;
+        width: 300px;
+        height: 140px;
       }
     .con-result{
         margin-top: 0;
