@@ -3,32 +3,37 @@
     "items":[
     {
         "Type": "original",
-        "count": "5",
+        "count": 5,
         "image": "./images/original_cola.svg"
     },
+
     {
         "Type": "violet",
-        "count": "5",
+        "count": 5,
         "image": "./images/violet_cola.svg"
     },
+
     {
         "Type": "yellow",
-        "count": "5",
+        "count": 5,
         "image": "./images/yellow_cola.svg"
     },
+
     {
         "Type": "cool",
-        "count": "5",
+        "count": 5,
         "image": "./images/cool_cola.svg"
     },
+
     {
         "Type": "green",
-        "count": "5",
+        "count": 5,
         "image": "./images/green_cola.svg"
     },
+    
     {
         "Type": "orange",
-        "count": "5",
+        "count": 5,
         "image": "./images/orange_cola.svg"
     }
 ]}
