@@ -1,7 +1,7 @@
 'use strict';
 
 function getJson(){
-    return fetch('/cola.json')
+    return fetch('./cola.json')
     .then(response=>response.json())
     .then(json=>json.items)
     .catch(error=> alert(error))
@@ -13,9 +13,6 @@ function displayItems(items){
 }
 
 function createHTMLString(item){
-    console.log(item);
-    console.log(item.type.slice(-5));
-    console.log(item.type)
     return `
     <li class="list-${item.color}">
     <img
