@@ -2,37 +2,37 @@
 
     "items":[
     {
-        "Type": "original",
+        "type": "Original",
         "count": 5,
         "image": "./images/original_cola.svg"
     },
 
     {
-        "Type": "violet",
+        "type": "Violet",
         "count": 5,
         "image": "./images/violet_cola.svg"
     },
 
     {
-        "Type": "yellow",
+        "type": "Yellow",
         "count": 5,
         "image": "./images/yellow_cola.svg"
     },
 
     {
-        "Type": "cool",
+        "type": "Cool",
         "count": 5,
         "image": "./images/cool_cola.svg"
     },
 
     {
-        "Type": "green",
+        "type": "Green",
         "count": 5,
         "image": "./images/green_cola.svg"
     },
     
     {
-        "Type": "orange",
+        "type": "Orange",
         "count": 5,
         "image": "./images/orange_cola.svg"
     }
