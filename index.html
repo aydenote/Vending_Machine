@@ -25,6 +25,8 @@
           placeholder="입금액 입력"
           min="1000"
           max="30000"
+          step="1000"
+          onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
           class="txt-deposit"
         />
         <button class="btn-deposit">입금</button>
