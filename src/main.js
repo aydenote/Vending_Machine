@@ -8,14 +8,14 @@ function getJson(){
     .catch(error=> alert(error))
 }
 
-// item 컨테이너에 html 추가
-function displayItems(items){ 
+// item 메인 컨테이너에 html로 추가
+function displayMainItems(items){ 
     const container = document.querySelector('.list-cola'); 
-    container.innerHTML = items.map(item=>createHTMLString(item)).join('');
+    container.innerHTML = items.map(item=>createMainHTMLString(item)).join('');
 }
 
-// 각 item을 html로 변경
-function createHTMLString(item){
+// 각 item을 메인 콜라 리스트 html로 변경
+function createMainHTMLString(item){
     return `
     <li class="list-${item.color}">
     <img
@@ -34,25 +34,57 @@ function createHTMLString(item){
 // json 함수 호출
 getJson()
     .then(items=>{
-        displayItems(items)
+        displayMainItems(items)
     });
 
-
 // 입금 클릭시 소지금 변경.
-
 const btn_Deposit = document.querySelector(".btn-deposit");
 const txt_deposit = document.querySelector(".txt-deposit");
 const my_money = document.querySelector(".txt-money");
 
 btn_Deposit.addEventListener('click',()=>{
-  console.log(txt_deposit.value);
- console.dir(my_money.textContent);
- my_money.innerText = parseInt(txt_deposit.value) + parseInt(my_money.textContent);
+  // 기존 소지금에 추가 입금액 저장
+  my_money.innerText = parseInt(txt_deposit.value) + parseInt(my_money.textContent);
  
   // 소지금 공백에 대한 예외처리
-  if(txt_deposit.value==''){
-    console.log(my_money.value);
-    my_money.innerText = 1000;
-  } 
+  if(txt_deposit.value==''){my_money.innerText = 1000;} 
+  
+  // 입금 후 금액 초기화
   txt_deposit.value=null;
 })
+
+// 아이템 클릭시 get list에 저장
+const list_cola = document.querySelector(".list-cola");
+list_cola.addEventListener('click', event=>{
+// 아이템 밖에 클릭시 동작 예외처리
+  if(event.target.localName==="ul"){
+    return
+  } else{
+    displayGetItem(event);
+  }
+})
+
+function displayGetItem(item){
+  const con_getCola = document.querySelector(".con-getCola");
+  con_getCola.innerHTML= createGetHTMLString(item)
+}
+
+function createGetHTMLString(item){
+  let className = item.target.classList.value;
+  let arr = className.split("");
+  arr.splice(0,5);
+  className = arr.join("");
+     
+  return `
+  <div class="con-cola">
+            <img
+              src="./images/${className}_cola.svg"
+              width="18px"
+              height="33px"
+              class="img-cola"
+            />
+            <p class="txt-colaName voucher">Original_cola</p>
+            <p class="txt-colaCount">${1}</p>
+  `
+}
+

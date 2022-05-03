@@ -108,7 +108,7 @@ li{
     line-height: 33px;
     margin: 0 12px 11px 27px;
     border-radius: 5px;
-    
+    text-align: right;
     font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
     font-weight: 500;
@@ -118,15 +118,15 @@ li{
 
 .txt-balance::before{
     content: "잔액 : ";
-    padding-left: 10px;
+    float: left;
     padding-right: 15px;
     width: 47px;
 }
+
 .txt-balance::after{
-    content: "1,000원 ";
-    padding-left: 79px;
-    position: absolute;
+    content: "원 ";
     width: 54px;
+    padding-right: 20px;
 }
 
 .btn-change{
@@ -241,7 +241,7 @@ article.con-getCola::-webkit-scrollbar-track {background: #EAE8FE;}
 .btn-getCola{
     float: right;
     width: 94px;
-    height: 106px;
+    height: 120px;
     background: #6327FE;
     margin-right: 27px;
 
