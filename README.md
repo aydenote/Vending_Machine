@@ -28,4 +28,6 @@
 
 ## 동작 미리보기 :
 
+![image](https://user-images.githubusercontent.com/77476077/166402941-9d8ac91d-ab87-4869-bb78-3ce230e06c58.png)
+
 ## [결과 페이지 바로가기](https://aydenote.github.io/Vending_Machine/index.html)

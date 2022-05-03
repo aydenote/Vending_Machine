@@ -36,3 +36,17 @@ getJson()
     .then(items=>{
         displayItems(items)
     });
+
+
+// 입금 클릭시 소지금 변경.
+
+const btn_Deposit = document.querySelector(".btn-deposit");
+const txt_deposit = document.querySelector(".txt-deposit");
+const my_money = document.querySelector(".txt-money");
+
+btn_Deposit.addEventListener('click',()=>{
+  console.log(window.getComputedStyle(my_money, '::after').content="1"); 
+  txt_deposit.value;
+  txt_deposit.value=null;
+  
+})
