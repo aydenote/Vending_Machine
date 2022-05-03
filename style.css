@@ -7,13 +7,10 @@
 }
 
 
-html, body{
-    background: #EAE8FE;
-}
+html, 
+body{background: #EAE8FE;}
 
-header{   
-    text-align: center;
-}
+header{text-align: center;}
 
 .container{
     display: flex;
@@ -37,9 +34,9 @@ li{
     border-radius: 10px;
     text-align: center;
 }
-.soldout{
-    pointer-events: none;
-}
+
+.soldout{pointer-events: none;}
+
 .list-violet.soldout::before{
     content: "";
     width: 94px;
@@ -51,7 +48,6 @@ li{
     background-image: url(./images/sold_out.svg);
     border-radius: 10px;
     text-align: center;
-    ;
 }
 
 .list-cola{
@@ -72,9 +68,13 @@ li{
     box-sizing: border-box;
 }
 
-.img-original, .img-cool, .img-green, .img-orange, .img-violet,.img-yellow{
+.img-original, 
+.img-cool, 
+.img-green, 
+.img-orange, 
+.img-violet,
+.img-yellow{
     margin: 11px 29px 6px;   
-    
 }
 
 .txt-colaName{
@@ -144,9 +144,8 @@ li{
     font-weight: 500;
     font-size: 13px;
 }
-.btn-change:hover{
-    cursor: pointer;
-}
+
+.btn-change:hover{cursor: pointer;}
 
 .txt-deposit{
     width: 200px;
@@ -179,9 +178,7 @@ li{
     background: #FFFFFF;
 }
 
-.btn-deposit:hover{
-    cursor: pointer;
-}
+.btn-deposit:hover{cursor: pointer;}
 
 article.con-getCola{
     display: inline-block;
@@ -196,20 +193,19 @@ article.con-getCola{
     padding: 12px 10px 0 12px;
 }
 
+/* 스크롤바의 너비 */
+article.con-getCola::-webkit-scrollbar {width: 4px;}
 
-article.con-getCola::-webkit-scrollbar {
-    width: 4px;  /* 스크롤바의 너비 */
-}
-
+/* 스크롤바의 길이 */
 article.con-getCola::-webkit-scrollbar-thumb {
-    height: 79%; /* 스크롤바의 길이 */
+    height: 79%; 
     background: #FFFFFF;
     border-radius: 50px;
 }
 
-article.con-getCola::-webkit-scrollbar-track {
-    background: #EAE8FE; /*스크롤바 뒷 배경*/
-}
+ /*스크롤바 뒷 배경*/
+article.con-getCola::-webkit-scrollbar-track {background: #EAE8FE;}
+
 .con-cola{
     width: 100%;
     height: 46px;
@@ -234,6 +230,7 @@ article.con-getCola::-webkit-scrollbar-track {
     margin: 8px 8px 8px 0px;
     border-radius: 5px;
     line-height: 28px;
+    
     font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
     font-weight: 500;
@@ -256,9 +253,7 @@ article.con-getCola::-webkit-scrollbar-track {
     border-radius: 5px;
 }
 
-.btn-getCola:hover{
-    cursor: pointer;
-}
+.btn-getCola:hover{cursor: pointer;}
 
 .txt-money{
     width: 306px;
@@ -272,6 +267,13 @@ article.con-getCola::-webkit-scrollbar-track {
     background: #EAE8FE;
 }
 
+.txt-money{
+    overflow: hidden;
+    text-align: right;
+    padding-right: 20px;
+    line-height:32px
+}
+
 .txt-money::before{
     content: "소지금 : ";
     float: left;
@@ -279,12 +281,9 @@ article.con-getCola::-webkit-scrollbar-track {
     padding-left: 12px;
     line-height: 32px;
 }
-.txt-money{
-    overflow: hidden;
-    text-align: right;
-    padding-right: 20px;
-    line-height:32px
-}
+
+.txt-money::after{content: "원";}
+
 
 .con-getResult{
     width: 360px;    
@@ -308,32 +307,30 @@ article.con-getCola::-webkit-scrollbar-track {
     overflow-y: scroll;
 }
 
+/* 스크롤바의 너비 */
+.con-getCola.result::-webkit-scrollbar {width: 4px;}
 
-.con-getCola.result::-webkit-scrollbar {
-    width: 4px;  /* 스크롤바의 너비 */
-
-}
-
+/* 스크롤바의 길이 */
 .con-getCola.result::-webkit-scrollbar-thumb {
-    height: 79%; /* 스크롤바의 길이 */
+    height: 79%; 
     background: #FFFFFF;
     border-radius: 50px;
 }
 
-.con-getCola.result::-webkit-scrollbar-track {
-    background: #EAE8FE; /*스크롤바 뒷 배경*/
-}
+/*스크롤바 뒷 배경*/
+.con-getCola.result::-webkit-scrollbar-track {background: #EAE8FE;}
 
 .txt-totalPrice{
+    text-align: right;
     padding-right: 27px;
     margin-top: 10px;
+    
     font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 17px;
     color: #000000;
-    text-align: right;
 }
 
 .con-money{
@@ -347,16 +344,12 @@ article.con-getCola::-webkit-scrollbar-track {
 }
 
 @media screen and (max-width: 764px) {
-    body {
-        background-color: #fff;
-      }
+    body {background-color: #fff;}
 
     header img{
         width: 300px;
         height: 140px;
-      }
-    .con-result{
-        margin-top: 0;
     }
     
+    .con-result{margin-top: 0;}
 }
