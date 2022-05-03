@@ -1,5 +1,6 @@
 'use strict';
 
+// json 데이터 호출
 function getJson(){
     return fetch('./cola.json')
     .then(response=>response.json())
@@ -7,11 +8,13 @@ function getJson(){
     .catch(error=> alert(error))
 }
 
+// item 컨테이너에 html 추가
 function displayItems(items){ 
     const container = document.querySelector('.list-cola'); 
     container.innerHTML = items.map(item=>createHTMLString(item)).join('');
 }
 
+// 각 item을 html로 변경
 function createHTMLString(item){
     return `
     <li class="list-${item.color}">
@@ -28,6 +31,7 @@ function createHTMLString(item){
   `
 }
 
+// json 함수 호출
 getJson()
     .then(items=>{
         displayItems(items)
