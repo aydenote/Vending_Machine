@@ -47,7 +47,7 @@ btn_Deposit.addEventListener('click',()=>{
   my_money.innerText = parseInt(txt_deposit.value) + parseInt(my_money.textContent);
  
   // 소지금 공백에 대한 예외처리
-  if(txt_deposit.value==''){my_money.innerText = 1000;} 
+  if(txt_deposit.value==''){my_money.innerText = 0;} 
   
   // 입금 후 금액 초기화
   txt_deposit.value=null;
