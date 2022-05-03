@@ -46,14 +46,13 @@ const my_money = document.querySelector(".txt-money");
 
 btn_Deposit.addEventListener('click',()=>{
   console.log(txt_deposit.value);
- console.dir(my_money);
-  my_money.innerText = parseInt(txt_deposit.value) + parseInt(my_money.value)+'원';  // txt_deposit.value+'원';
+ console.dir(my_money.textContent);
+ my_money.innerText = parseInt(txt_deposit.value) + parseInt(my_money.textContent);
  
   // 소지금 공백에 대한 예외처리
   if(txt_deposit.value==''){
     console.log(my_money.value);
-    my_money.innerText = 1000+'원';
+    my_money.innerText = 1000;
   } 
   txt_deposit.value=null;
 })
-
