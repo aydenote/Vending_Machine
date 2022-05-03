@@ -22,8 +22,8 @@ function createMainHTMLString(item){
       src=${item.image}
       width="36px"
       height="65px"
+      alt="${item.type}"
       class="img-${item.color}"
-      alt="보라색 콜라"
     />
     <p class="txt-colaName">${item.type}</p>
     <p class="txt-price">${item.price}원</p>
@@ -66,7 +66,7 @@ list_cola.addEventListener('click', event=>{
 
 function displayGetItem(item){
   const con_getCola = document.querySelector(".con-getCola");
-  con_getCola.innerHTML= createGetHTMLString(item)
+  con_getCola.innerHTML = createGetHTMLString(item);
 }
 
 function createGetHTMLString(item){
@@ -81,10 +81,12 @@ function createGetHTMLString(item){
               src="./images/${className}_cola.svg"
               width="18px"
               height="33px"
+              alt="${className} cola"
               class="img-cola"
             />
-            <p class="txt-colaName voucher">Original_cola</p>
+            <p class="txt-colaName voucher">${className}_cola</p>
             <p class="txt-colaCount">${1}</p>
   `
 }
+
 
