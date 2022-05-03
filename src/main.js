@@ -37,20 +37,26 @@ getJson()
         displayMainItems(items)
     });
 
-// 입금 클릭시 소지금 변경.
+// 입금 클릭시 잔액 변경.
 const btn_Deposit = document.querySelector(".btn-deposit");
 const txt_deposit = document.querySelector(".txt-deposit");
 const my_money = document.querySelector(".txt-money");
+const txt_balance = document.querySelector(".txt-balance")
 
 btn_Deposit.addEventListener('click',()=>{
-  // 기존 소지금에 추가 입금액 저장
-  my_money.innerText = parseInt(txt_deposit.value) + parseInt(my_money.textContent);
- 
-  // 소지금 공백에 대한 예외처리
-  if(txt_deposit.value==''){my_money.innerText = 0;} 
-  
+  // 기존 추가 입금액 저장
+  txt_balance.textContent = parseInt(txt_deposit.value) + parseInt(txt_balance.textContent);
+  // 입금액 공백에 대한 잔액 예외처리
+  if(txt_deposit.value==''){txt_balance.textContent = 0;} 
   // 입금 후 금액 초기화
   txt_deposit.value=null;
+})
+
+// 거스름돈 반환 후 잔액 0, 소지금에 잔액 추가
+const btn_change = document.querySelector(".btn-change");
+btn_change.addEventListener('click',()=>{
+  my_money.textContent = parseInt(my_money.textContent) + parseInt(txt_balance.textContent);
+  txt_balance.textContent=0;
 })
 
 // 아이템 클릭시 get list에 저장
@@ -64,8 +70,8 @@ list_cola.addEventListener('click', event=>{
   }
 })
 
+const con_getCola = document.querySelector(".con-getCola");
 function displayGetItem(item){
-  const con_getCola = document.querySelector(".con-getCola");
   con_getCola.innerHTML = createGetHTMLString(item);
 }
 

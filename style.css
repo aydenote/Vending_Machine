@@ -275,7 +275,7 @@ article.con-getCola::-webkit-scrollbar-track {background: #EAE8FE;}
 }
 
 .txt-money::before{
-    content: "소지금 : ";
+    content: "반환금 : ";
     float: left;
     width: 47px;
     padding-left: 12px;
