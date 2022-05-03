@@ -274,15 +274,16 @@ article.con-getCola::-webkit-scrollbar-track {
 
 .txt-money::before{
     content: "소지금 : ";
+    float: left;
     width: 47px;
     padding-left: 12px;
     line-height: 32px;
 }
-.txt-money::after{
-    content: "25,000원 ";
-    padding-left: 180px;
-    width: 87px;
-    line-height: 32px;
+.txt-money{
+    overflow: hidden;
+    text-align: right;
+    padding-right: 20px;
+    line-height:32px
 }
 
 .con-getResult{

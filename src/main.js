@@ -45,7 +45,6 @@ const txt_deposit = document.querySelector(".txt-deposit");
 const my_money = document.querySelector(".txt-money");
 
 btn_Deposit.addEventListener('click',()=>{
-  console.log(window.getComputedStyle(my_money, '::after').content="1"); 
   txt_deposit.value;
   txt_deposit.value=null;
   

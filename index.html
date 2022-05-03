@@ -20,7 +20,13 @@
         <ul class="list-cola"></ul>
         <p class="txt-balance"></p>
         <button class="btn-change">거스름돈 반환</button>
-        <input type="number" placeholder="입금액 입력" class="txt-deposit" />
+        <input
+          type="number"
+          placeholder="입금액 입력"
+          min="1000"
+          max="30000"
+          class="txt-deposit"
+        />
         <button class="btn-deposit">입금</button>
         <article class="con-getCola">
           <div class="con-cola">
@@ -61,7 +67,7 @@
       </section>
       <section class="con-getResult">
         <div class="con-money">
-          <p class="txt-money"></p>
+          <p class="txt-money">1000원</p>
         </div>
         <div class="con-result">
           <h1 class="txt-getColaName">획득한 음료</h1>
