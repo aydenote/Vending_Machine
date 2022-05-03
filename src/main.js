@@ -70,8 +70,12 @@ list_cola.addEventListener('click', event=>{
   }
 })
 
-const con_getCola = document.querySelector(".con-getCola");
+
+// const create_div
+// const create_img
+// const create_p
 function displayGetItem(item){
+  const con_getCola = document.querySelector(".con-getCola");
   con_getCola.innerHTML = createGetHTMLString(item);
 }
 
