@@ -2,7 +2,7 @@
 
 // json 데이터 호출
 function getJson(){
-    return fetch('./cola.json')
+    return fetch('./src/cola.json')
     .then(response=>response.json())
     .then(json=>json.items)
     .catch(error=> alert(error))
@@ -30,12 +30,6 @@ function createMainHTMLString(item){
   </li>
   `
 }
-
-// json 함수 호출
-getJson()
-    .then(items=>{
-        displayMainItems(items)
-    });
 
 // 입금 클릭시 잔액 변경.
 const btn_Deposit = document.querySelector(".btn-deposit");
@@ -70,13 +64,16 @@ list_cola.addEventListener('click', event=>{
   }
 })
 
+// json 함수 호출
+getJson()
+    .then(items=>{
+        displayMainItems(items)
+    });
 
-// const create_div
-// const create_img
-// const create_p
+// get list에 item 추가 
 function displayGetItem(item){
   const con_getCola = document.querySelector(".con-getCola");
-  con_getCola.innerHTML = createGetHTMLString(item);
+  con_getCola.insertAdjacentHTML("afterbegin", createGetHTMLString(item));
 }
 
 function createGetHTMLString(item){
