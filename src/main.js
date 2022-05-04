@@ -31,6 +31,46 @@ function createMainHTMLString(item){
   `
 }
 
+// get list에 item 추가 
+const cola_map = new Map();
+
+function displayGetItem(item){
+  const con_getCola = document.querySelector(".con-getCola");
+  con_getCola.insertAdjacentHTML("afterbegin", createGetHTMLString(item));
+  const con_cola = document.querySelector(".con-cola");
+  let count_value = con_cola.dataset.value;
+
+     //get list에 동일 item이 있는 경우 최대 재고까지 수량만 변경. 
+      if(cola_map.has(count_value)){
+      cola_map.set(count_value, cola_map.get(count_value)+1);
+      } else{
+        cola_map.set(count_value, 1);
+      }
+      con_cola.children[2].innerText=cola_map.get(count_value);
+}
+
+  
+  
+function createGetHTMLString(item){
+  let className = item.target.classList.value;
+  let arr = className.split("");
+  arr.splice(0,5);
+  className = arr.join("");
+
+  return `
+  <div data-key="type" data-value="${className}" class="con-cola">
+            <img
+              src="./images/${className}_cola.svg"
+              width="18px"
+              height="33px"
+              alt="${className} cola"
+              class="img-cola"
+            />
+            <p class="txt-colaName voucher">${className}_cola</p>
+            <p class="txt-colaCount"></p>
+  `
+}
+
 // 입금 클릭시 잔액 변경.
 const btn_Deposit = document.querySelector(".btn-deposit");
 const txt_deposit = document.querySelector(".txt-deposit");
@@ -56,13 +96,16 @@ btn_change.addEventListener('click',()=>{
 // 아이템 클릭시 get list에 저장
 const list_cola = document.querySelector(".list-cola");
 list_cola.addEventListener('click', event=>{
-// 아이템 밖에 클릭시 동작 예외처리
-  if(event.target.localName==="ul"){
-    return
-  } else{
-    displayGetItem(event);
-  }
-})
+    // 아이템 밖에 클릭시 동작 예외처리
+      if(event.target.localName==="ul"){
+        return
+      } else{
+        // 잔액이 없는 경우 콜라 선택 불가.
+        if(parseInt(txt_balance.textContent)>=1000){
+          displayGetItem(event);
+      }
+     }
+    })
 
 // json 함수 호출
 getJson()
@@ -70,30 +113,5 @@ getJson()
         displayMainItems(items)
     });
 
-// get list에 item 추가 
-function displayGetItem(item){
-  const con_getCola = document.querySelector(".con-getCola");
-  con_getCola.insertAdjacentHTML("afterbegin", createGetHTMLString(item));
-}
-
-function createGetHTMLString(item){
-  let className = item.target.classList.value;
-  let arr = className.split("");
-  arr.splice(0,5);
-  className = arr.join("");
-     
-  return `
-  <div class="con-cola">
-            <img
-              src="./images/${className}_cola.svg"
-              width="18px"
-              height="33px"
-              alt="${className} cola"
-              class="img-cola"
-            />
-            <p class="txt-colaName voucher">${className}_cola</p>
-            <p class="txt-colaCount">${1}</p>
-  `
-}
 
 
