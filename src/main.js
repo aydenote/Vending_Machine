@@ -17,7 +17,7 @@ function displayMainItems(items){
 // 각 item을 메인 콜라 리스트 html로 변경
 function createMainHTMLString(item){
     return `
-    <li class="list-${item.color}">
+    <li data-value="${item.color}" class="list-${item.color}">
     <img
       src=${item.image}
       width="36px"
@@ -33,22 +33,26 @@ function createMainHTMLString(item){
 
 //get list에 item 추가 (map으로 구현)
 const cola_map = new Map();
+const con_getCola = document.querySelector(".con-getCola");
 
 function displayGetItem(item){
-  const con_getCola = document.querySelector(".con-getCola");
   con_getCola.insertAdjacentHTML("afterbegin", createGetHTMLString(item));
 }
 
-function itemCount() {
-       //get list에 동일 item이 있는 경우 최대 재고까지 수량만 변경. 
-       const con_cola = document.querySelector(".con-cola");
-       let count_value = con_cola.dataset.value;
-           if(cola_map.has(count_value)){
-           cola_map.set(count_value, cola_map.get(count_value)+1);
+// 
+function itemCount(colaName) {
+         //get list에 동일 item이 있는 경우 최대 재고까지 수량만 변경. 
+           if(cola_map.has(colaName)){
+           cola_map.set(colaName, cola_map.get(colaName)+1);
            } else{
-             cola_map.set(count_value, 1);
+             cola_map.set(colaName, 1);
            }
-           con_cola.children[2].innerText=cola_map.get(count_value);  
+          // 콜라 수량 변경 요청 온 콜라 이름과 기존에 등록된 콜라들 중 맞는 이름을 찾아 해당 콜라 수량을 변경.
+           for(let i=0; i<con_getCola.children.length; i++){
+             if(con_getCola.children[i].dataset.value===colaName){
+               con_getCola.children[i].lastElementChild.innerText=cola_map.get(colaName);
+             }
+            }
 }
 
 //get list에 item 추가 (객체로로 구현)
@@ -76,7 +80,7 @@ function createGetHTMLString(item){
   className = arr.join("");
 
   return `
-  <div data-key="type" data-value="${className}" class="con-cola">
+  <div data-value="${className}" class="con-cola">
             <img
               src="./images/${className}_cola.svg"
               width="18px"
@@ -121,8 +125,20 @@ list_cola.addEventListener('click', event=>{
       } else{
         // 잔액이 없는 경우 콜라 선택 불가.
         if(parseInt(txt_balance.textContent)>=1000){
+          //  콜라이름을 객체로 생성. 콜라 객체가 없으면 item 생성, 있으면 수량만 변경
+          if(Object.keys(obj)==0){
+            obj[event.target.dataset.value]=1;
             displayGetItem(event);
-            itemCount();
+            itemCount(event.target.dataset.value);
+          } 
+          else if(Object.keys(obj).includes(event.target.dataset.value)){
+            obj[event.target.dataset.value]=1;
+            itemCount(event.target.dataset.value);
+        } else{
+          obj[event.target.dataset.value]=1;
+          displayGetItem(event);
+          itemCount(event.target.dataset.value);
+        }
       }
      }
     })
