@@ -37,16 +37,18 @@ const cola_map = new Map();
 function displayGetItem(item){
   const con_getCola = document.querySelector(".con-getCola");
   con_getCola.insertAdjacentHTML("afterbegin", createGetHTMLString(item));
-  
-     //get list에 동일 item이 있는 경우 최대 재고까지 수량만 변경. 
-     const con_cola = document.querySelector(".con-cola");
-     let count_value = con_cola.dataset.value;
-         if(cola_map.has(count_value)){
-         cola_map.set(count_value, cola_map.get(count_value)+1);
-         } else{
-           cola_map.set(count_value, 1);
-         }
-         con_cola.children[2].innerText=cola_map.get(count_value);
+}
+
+function itemCount() {
+       //get list에 동일 item이 있는 경우 최대 재고까지 수량만 변경. 
+       const con_cola = document.querySelector(".con-cola");
+       let count_value = con_cola.dataset.value;
+           if(cola_map.has(count_value)){
+           cola_map.set(count_value, cola_map.get(count_value)+1);
+           } else{
+             cola_map.set(count_value, 1);
+           }
+           con_cola.children[2].innerText=cola_map.get(count_value);  
 }
 
 //get list에 item 추가 (객체로로 구현)
@@ -111,6 +113,7 @@ btn_change.addEventListener('click',()=>{
 
 // 아이템 클릭시 get list에 저장
 const list_cola = document.querySelector(".list-cola");
+let obj ={}
 list_cola.addEventListener('click', event=>{
     // 아이템 밖에 클릭시 동작 예외처리
       if(event.target.localName==="ul"){
@@ -119,6 +122,7 @@ list_cola.addEventListener('click', event=>{
         // 잔액이 없는 경우 콜라 선택 불가.
         if(parseInt(txt_balance.textContent)>=1000){
             displayGetItem(event);
+            itemCount();
       }
      }
     })
