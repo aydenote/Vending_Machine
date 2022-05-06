@@ -39,7 +39,7 @@ function displayGetItem(item){
   con_getCola.insertAdjacentHTML("afterbegin", createGetHTMLString(item));
 }
 
-// 
+// 선택한 콜라 수량 변경.
 function itemCount(colaName) {
          //get list에 동일 item이 있는 경우 최대 재고까지 수량만 변경. 
            if(cola_map.has(colaName)){
@@ -127,9 +127,16 @@ btn_getCola.addEventListener('click', event =>{
   if(totalCount*1000>parseInt(txt_balance.textContent)){
     alert("잔액이 부족합니다.")
   } else{
-
+    // 잔액 차감 및 콜라 아이템 초기화
+    txt_balance.textContent-=totalCount*1000;
+    obj = new Object(); // 아이템 초기화
+    cola_map.clear(); // 아이템 수량 초기화
+    con_getCola.innerHTML=""; // get list 컨테이너 초기화
+    getResult();
   }
 })
+
+// 획득한 음료에 아이템 표시.
 
 
 
