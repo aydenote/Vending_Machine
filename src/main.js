@@ -100,10 +100,12 @@ const my_money = document.querySelector(".txt-money");
 const txt_balance = document.querySelector(".txt-balance")
 
 btn_Deposit.addEventListener('click',()=>{
+  // 입금액 공백에 대한 잔액 예외처리
+  if(txt_deposit.value==''){
+    txt_deposit.value = 0;
+  } 
   // 기존 추가 입금액 저장
   txt_balance.textContent = parseInt(txt_deposit.value) + parseInt(txt_balance.textContent);
-  // 입금액 공백에 대한 잔액 예외처리
-  if(txt_deposit.value==''){txt_balance.textContent = 0;} 
   // 입금 후 금액 초기화
   txt_deposit.value=null;
 })
@@ -117,7 +119,7 @@ btn_change.addEventListener('click',()=>{
 
 // 획득 버튼 클릭시 
 const btn_getCola = document.querySelector(".btn-getCola");
-btn_getCola.addEventListener('click', event =>{
+btn_getCola.addEventListener('click', () =>{
   // 총 수량 * 1000원(개당 가격) > 잔액 이면 획득 불가. 경고 출력
   // 총 수량 * 1000원(개당 가격) < 잔액 이면 정상 획득 획득 음료 list에 추가.
   let totalCount = 0;
@@ -127,17 +129,20 @@ btn_getCola.addEventListener('click', event =>{
   if(totalCount*1000>parseInt(txt_balance.textContent)){
     alert("잔액이 부족합니다.")
   } else{
+    getResult();
+    console.dir(con_getCola);
     // 잔액 차감 및 콜라 아이템 초기화
     txt_balance.textContent-=totalCount*1000;
     obj = new Object(); // 아이템 초기화
     cola_map.clear(); // 아이템 수량 초기화
     con_getCola.innerHTML=""; // get list 컨테이너 초기화
-    getResult();
   }
 })
 
 // 획득한 음료에 아이템 표시.
-
+function getResult(){
+  return console.dir(con_getCola);
+}
 
 
 // 아이템 클릭시 get list에 저장
