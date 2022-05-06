@@ -115,6 +115,24 @@ btn_change.addEventListener('click',()=>{
   txt_balance.textContent=0;
 })
 
+// 획득 버튼 클릭시 
+const btn_getCola = document.querySelector(".btn-getCola");
+btn_getCola.addEventListener('click', event =>{
+  // 총 수량 * 1000원(개당 가격) > 잔액 이면 획득 불가. 경고 출력
+  // 총 수량 * 1000원(개당 가격) < 잔액 이면 정상 획득 획득 음료 list에 추가.
+  let totalCount = 0;
+  for(let i=0; i<con_getCola.children.length; i++){
+    totalCount += parseInt(con_getCola.children[i].children[2].innerText);
+  }
+  if(totalCount*1000>parseInt(txt_balance.textContent)){
+    alert("잔액이 부족합니다.")
+  } else{
+
+  }
+})
+
+
+
 // 아이템 클릭시 get list에 저장
 const list_cola = document.querySelector(".list-cola");
 let obj ={}
