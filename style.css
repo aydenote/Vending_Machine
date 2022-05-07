@@ -333,6 +333,14 @@ article.con-getCola::-webkit-scrollbar-track {background: #EAE8FE;}
     color: #000000;
 }
 
+.txt-totalPrice::before{
+ content: "총금액 : ";
+}
+
+.txt-totalPrice::after{
+ content: "원";
+}
+
 .con-money{
     padding: 9px 27px;
     background-color: #ffffff;

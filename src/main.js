@@ -132,26 +132,31 @@ btn_getCola.addEventListener('click', () =>{
     // con_getCola 에 아무것도 없을 경우 예외 처리
     return 
   } else{
-    getResult(con_getCola);
+    getResult();
     // 잔액 차감 및 콜라 아이템 초기화
     txt_balance.textContent-=totalCount*1000;
     obj = new Object(); // 아이템 초기화
     cola_map.clear(); // 아이템 수량 초기화
     con_getCola.innerHTML=``; // get list 컨테이너 초기화
+    totalPrice();
   }
 })
 
 // 획득한 음료에 아이템 표시.
-function getResult(con_getCola){
-  console.log(cola_map);
-  console.log(obj);
-  const result = document.querySelector(".con-getCola.result");
-  result.innerHTML = con_getCola.innerHTML;
-
+const result = document.querySelector(".con-getCola.result");
+function getResult(){
+  result.insertAdjacentHTML("afterbegin", con_getCola.innerHTML);
 }
 
-// 획득한 음료 수량 변경.
-
+// 총금액 변경
+const txt_totalPrice = document.querySelector(".txt-totalPrice");
+function totalPrice(){
+  let total=0;
+  for(let i = 0; i<result.children.length; i++){
+  total+= parseInt(result.children[i].children[2].innerText);
+}
+  txt_totalPrice.innerText=total*1000;
+}
 
 // 아이템 클릭시 get list에 저장
 const list_cola = document.querySelector(".list-cola");
