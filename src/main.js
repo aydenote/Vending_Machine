@@ -128,21 +128,29 @@ btn_getCola.addEventListener('click', () =>{
   }
   if(totalCount*1000>parseInt(txt_balance.textContent)){
     alert("잔액이 부족합니다.")
+   } else if(con_getCola.children.length === 0){
+    // con_getCola 에 아무것도 없을 경우 예외 처리
+    return 
   } else{
-    getResult();
-    console.dir(con_getCola);
+    getResult(con_getCola);
     // 잔액 차감 및 콜라 아이템 초기화
     txt_balance.textContent-=totalCount*1000;
     obj = new Object(); // 아이템 초기화
     cola_map.clear(); // 아이템 수량 초기화
-    con_getCola.innerHTML=""; // get list 컨테이너 초기화
+    con_getCola.innerHTML=``; // get list 컨테이너 초기화
   }
 })
 
 // 획득한 음료에 아이템 표시.
-function getResult(){
-  return console.dir(con_getCola);
+function getResult(con_getCola){
+  console.log(cola_map);
+  console.log(obj);
+  const result = document.querySelector(".con-getCola.result");
+  result.innerHTML = con_getCola.innerHTML;
+
 }
+
+// 획득한 음료 수량 변경.
 
 
 // 아이템 클릭시 get list에 저장
