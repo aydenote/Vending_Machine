@@ -37,7 +37,15 @@ li{
 
 .soldout{pointer-events: none;}
 
-.list-violet.soldout::before{
+.list-violet.soldout::before,
+.list-original.soldout::before,
+.list-original.soldout::before,
+.list-yellow.soldout::before,
+.list-cool.soldout::before,
+.list-original.soldout::before,
+.list-green.soldout::before,
+.list-orange.soldout::before
+{
     content: "";
     width: 94px;
     height: 135px;

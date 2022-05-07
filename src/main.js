@@ -52,8 +52,19 @@ function itemCount(colaName) {
              if(con_getCola.children[i].dataset.value===colaName){
                con_getCola.children[i].lastElementChild.innerText=cola_map.get(colaName);
              }
+            // 5개 이상 선택시 품절
+             if(cola_map.get(colaName)>=5){
+               console.log(`${colaName} : ${cola_map.get(colaName)}`);
+               console.log(obj);
+               cola_map.set(colaName, 4);
+               for(let j=0; j<list_cola.children.length; j++){
+                 if(list_cola.children[j].dataset.value===colaName){
+                  list_cola.children[j].classList.add("soldout");
+                 }
+               }
+             }
             }
-}
+            }
 
 //get list에 item 추가 (객체로로 구현)
 // const cola_obj = {};
