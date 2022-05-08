@@ -41,30 +41,30 @@ function displayGetItem(item){
 
 // 선택한 콜라 수량 변경.
 function itemCount(colaName) {
-         //get list에 동일 item이 있는 경우 최대 재고까지 수량만 변경. 
-           if(cola_map.has(colaName)){
-           cola_map.set(colaName, cola_map.get(colaName)+1);
-           } else{
-             cola_map.set(colaName, 1);
-           }
-          // 콜라 수량 변경 요청 온 콜라 이름과 기존에 등록된 콜라들 중 맞는 이름을 찾아 해당 콜라 수량을 변경.
-           for(let i=0; i<con_getCola.children.length; i++){
-             if(con_getCola.children[i].dataset.value===colaName){
-               con_getCola.children[i].lastElementChild.innerText=cola_map.get(colaName);
-             }
-            // 5개 이상 선택시 품절
-             if(cola_map.get(colaName)>=5){
-               console.log(`${colaName} : ${cola_map.get(colaName)}`);
-               console.log(obj);
-               cola_map.set(colaName, 4);
-               for(let j=0; j<list_cola.children.length; j++){
-                 if(list_cola.children[j].dataset.value===colaName){
-                  list_cola.children[j].classList.add("soldout");
-                 }
-               }
-             }
-            }
-            }
+  //get list에 동일 item이 있는 경우 최대 재고까지 수량만 변경. 
+    if(cola_map.has(colaName)){
+      cola_map.set(colaName, cola_map.get(colaName)+1);
+    } else{
+      cola_map.set(colaName, 1);
+    }
+
+    // 콜라 수량 변경 요청 온 콜라 이름과 기존에 등록된 콜라들 중 맞는 이름을 찾아 해당 콜라 수량을 변경.
+    for(let i=0; i<con_getCola.children.length; i++){
+      if(con_getCola.children[i].dataset.value===colaName){
+        con_getCola.children[i].lastElementChild.innerText=cola_map.get(colaName);
+      }
+
+      // 5개 이상 선택시 품절
+     if(cola_map.get(colaName)>=5){
+      cola_map.set(colaName, 5);
+      for(let j=0; j<list_cola.children.length; j++){
+        if(list_cola.children[j].dataset.value===colaName){
+          list_cola.children[j].classList.add("soldout");
+        }
+      }
+    }
+  }
+}
 
 //get list에 item 추가 (객체로로 구현)
 // const cola_obj = {};
@@ -83,6 +83,34 @@ function itemCount(colaName) {
 //          }
 //          con_cola.children[2].innerText=cola_obj[count_value];
 // }
+
+// get list에서 item 클릭시 수량 감소.
+con_getCola.addEventListener("click", (event)=>{
+  // 외부 클릭 예외 처리
+  let path_map=[];
+  if(event.target.className==="con-getCola"){
+    return 
+  } else{
+    path_map=event.path.find(a=> a.className==="con-cola");
+    path_map.children[2].innerText-=1
+    cola_map.set(path_map.dataset.value, cola_map.get(path_map.dataset.value)-1);
+    if(path_map.children[2].innerText==="0"){
+      delete obj[path_map.dataset.value];
+      cola_map.delete(path_map.dataset.value);
+      path_map.outerHTML="";
+    }
+    if(cola_map.get(path_map.dataset.value)<=5){
+      for(let j=0; j<list_cola.children.length; j++){
+        if(list_cola.children[j].dataset.value===path_map.dataset.value){
+          list_cola.children[j].classList.remove("soldout");
+        }
+      }
+    }
+  }
+})
+
+
+
 
 function createGetHTMLString(item){
   let className = item.target.classList.value;
