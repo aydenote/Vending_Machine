@@ -199,31 +199,30 @@ function totalPrice(){
 
 // 아이템 클릭시 get list에 저장
 const list_cola = document.querySelector(".list-cola");
-let obj ={}
+let obj ={};
 list_cola.addEventListener('click', event=>{
-    // 아이템 밖에 클릭시 동작 예외처리
+  const clicked_value = event.target.dataset.value;
+  // 아이템 밖에 클릭시 동작 예외처리
       if(event.target.localName==="ul"){
         return
       } else{
         // 잔액이 없는 경우 콜라 선택 불가.
         if(parseInt(txt_balance.textContent)>=1000){
-          //  콜라이름을 객체로 생성. 콜라 객체가 없으면 item 생성, 있으면 수량만 변경
-          if(Object.keys(obj)==0){
-            obj[event.target.dataset.value]=1;
-            displayGetItem(event);
-            itemCount(event.target.dataset.value);
-          } 
-          else if(Object.keys(obj).includes(event.target.dataset.value)){
-            obj[event.target.dataset.value]=1;
-            itemCount(event.target.dataset.value);
-        } else{
-          obj[event.target.dataset.value]=1;
-          displayGetItem(event);
-          itemCount(event.target.dataset.value);
+          Object.keys(obj).includes(clicked_value) ? changeItemCount(clicked_value) : newItem(clicked_value, event);
         }
-      }
      }
     })
+
+function changeItemCount(clicked_value){
+  obj[clicked_value]=1;
+  itemCount(clicked_value);
+}
+
+function newItem(clicked_value, event){
+  obj[clicked_value]=1;
+  displayGetItem(event);
+  itemCount(clicked_value);
+}
 
 // json 함수 호출
 getJson()
