@@ -73,11 +73,10 @@ function getListItemCount(event){
 
   if(item_count.innerText === "1"){  
     delete cola_obj[item_name];
-    cola_map.delete(item_name);
     clicked_item.outerHTML="";
   } else{
     item_count.innerText-=1;
-    cola_map.set(item_name, cola_map.get(item_name)-1);
+    cola_obj[item_name]-=1;
   }
 
   if(cola_obj[item_name]<=5){
@@ -133,7 +132,6 @@ btn_getCola.addEventListener('click', () =>{
     // 잔액 차감 및 콜라 아이템 초기화
     txt_balance.textContent-=totalCount*1000;
     cola_obj = new Object(); // 아이템 초기화
-    cola_map.clear(); // 아이템 수량 초기화
     con_getCola.innerHTML=``; // get list 컨테이너 초기화
     totalPrice();
   }
