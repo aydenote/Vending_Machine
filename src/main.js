@@ -31,28 +31,26 @@ function createMainHTMLString(item){
   `
 }
 
-//get list에 item 추가 (map으로 구현)
-const cola_map = new Map();
 const con_getCola = document.querySelector(".con-getCola");
 
 // 선택한 콜라 수량 변경.
 function itemCount(colaName) {
   //get list에 동일 item이 있는 경우 최대 재고까지 수량만 변경. 
-    if(cola_map.has(colaName)){
-      cola_map.set(colaName, cola_map.get(colaName)+1);
+    if(cola_obj[colaName]){
+      cola_obj[colaName]+=1;
     } else{
-      cola_map.set(colaName, 1);
+      cola_obj[colaName]=1;
     }
 
     // 콜라 수량 변경 요청 온 콜라 이름과 기존에 등록된 콜라들 중 맞는 이름을 찾아 해당 콜라 수량을 변경.
     for(let i=0; i<con_getCola.children.length; i++){
       if(con_getCola.children[i].dataset.value===colaName){
-        con_getCola.children[i].lastElementChild.innerText=cola_map.get(colaName);
+        con_getCola.children[i].lastElementChild.innerText=cola_obj[colaName];
       }
 
       // 5개 이상 선택시 품절
-     if(cola_map.get(colaName)>=5){
-      cola_map.set(colaName, 5);
+     if(cola_obj[colaName]>=5){
+      cola_obj[colaName]=5;
       for(let j=0; j<list_cola.children.length; j++){
         if(list_cola.children[j].dataset.value===colaName){
           list_cola.children[j].classList.add("soldout");
@@ -61,24 +59,6 @@ function itemCount(colaName) {
     }
   }
 }
-
-//get list에 item 추가 (객체로로 구현)
-// const cola_obj = {};
-
-// function displayGetItem(item){
-//   const con_getCola = document.querySelector(".con-getCola");
-//   con_getCola.insertAdjacentHTML("afterbegin", createGetHTMLString(item));
-  
-//      //get list에 동일 item이 있는 경우 최대 재고까지 수량만 변경. 
-//      const con_cola = document.querySelector(".con-cola");
-//      let count_value = con_cola.dataset.value;
-//          if(Object.keys(cola_obj).includes(count_value)){
-//           cola_obj[count_value] +=1; 
-//          } else{
-//           cola_obj[count_value] =1; 
-//          }
-//          con_cola.children[2].innerText=cola_obj[count_value];
-// }
 
 // get list에서 item 클릭시 수량 감소.
 con_getCola.addEventListener("click", (event)=>{
@@ -92,7 +72,7 @@ function getListItemCount(event){
   let item_count = clicked_item.children[2];
 
   if(item_count.innerText === "1"){  
-    delete obj[item_name];
+    delete cola_obj[item_name];
     cola_map.delete(item_name);
     clicked_item.outerHTML="";
   } else{
@@ -100,7 +80,7 @@ function getListItemCount(event){
     cola_map.set(item_name, cola_map.get(item_name)-1);
   }
 
-  if(cola_map.get(item_name)<=5){
+  if(cola_obj[item_name]<=5){
     for(let j=0; j<list_cola.children.length; j++){
       if(list_cola.children[j].dataset.value===item_name){
         list_cola.children[j].classList.remove("soldout");
@@ -152,7 +132,7 @@ btn_getCola.addEventListener('click', () =>{
     getResult();
     // 잔액 차감 및 콜라 아이템 초기화
     txt_balance.textContent-=totalCount*1000;
-    obj = new Object(); // 아이템 초기화
+    cola_obj = new Object(); // 아이템 초기화
     cola_map.clear(); // 아이템 수량 초기화
     con_getCola.innerHTML=``; // get list 컨테이너 초기화
     totalPrice();
@@ -177,7 +157,7 @@ function totalPrice(){
 
 // 아이템 클릭시 get list에 저장
 const list_cola = document.querySelector(".list-cola");
-let obj ={};
+let cola_obj ={};
 list_cola.addEventListener('click', event=>{
   const clicked_cola = event.target.dataset.value;
   // 아이템 밖에 클릭시 동작 예외처리
@@ -186,19 +166,13 @@ list_cola.addEventListener('click', event=>{
       } else{
         // 잔액이 없는 경우 콜라 선택 불가.
         if(parseInt(txt_balance.textContent)>=1000){
-          Object.keys(obj).includes(clicked_cola) ? changeItemCount(clicked_cola) : newItem(clicked_cola, event);
+          Object.keys(cola_obj).includes(clicked_cola) ? itemCount(clicked_cola) : newItem(clicked_cola, event);
         }
       }
   }
 )
 
-function changeItemCount(clicked_cola){
-  obj[clicked_cola]=1;
-  itemCount(clicked_cola);
-}
-
 function newItem(clicked_cola, event){
-  obj[clicked_cola]=1;
   con_getCola.insertAdjacentHTML("afterbegin", createGetHTMLString(event));
   itemCount(clicked_cola);
 }
