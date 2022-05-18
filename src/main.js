@@ -35,10 +35,6 @@ function createMainHTMLString(item){
 const cola_map = new Map();
 const con_getCola = document.querySelector(".con-getCola");
 
-function displayGetItem(item){
-  con_getCola.insertAdjacentHTML("afterbegin", createGetHTMLString(item));
-}
-
 // 선택한 콜라 수량 변경.
 function itemCount(colaName) {
   //get list에 동일 item이 있는 경우 최대 재고까지 수량만 변경. 
@@ -87,49 +83,30 @@ function itemCount(colaName) {
 // get list에서 item 클릭시 수량 감소.
 con_getCola.addEventListener("click", (event)=>{
   // 외부 클릭 예외 처리
-  let path_map=[];
-  if(event.target.className==="con-getCola"){
-    return 
+  event.target.className==="con-getCola" ? "" : getListItemCount(event); 
+})
+
+function getListItemCount(event){
+  let clicked_item=event.path.find(item=> item.className==="con-cola");
+  let item_name = clicked_item.dataset.value;
+  let item_count = clicked_item.children[2];
+
+  if(item_count.innerText === "1"){  
+    delete obj[item_name];
+    cola_map.delete(item_name);
+    clicked_item.outerHTML="";
   } else{
-    path_map=event.path.find(a=> a.className==="con-cola");
-    path_map.children[2].innerText-=1
-    cola_map.set(path_map.dataset.value, cola_map.get(path_map.dataset.value)-1);
-    if(path_map.children[2].innerText==="0"){
-      delete obj[path_map.dataset.value];
-      cola_map.delete(path_map.dataset.value);
-      path_map.outerHTML="";
-    }
-    if(cola_map.get(path_map.dataset.value)<=5){
-      for(let j=0; j<list_cola.children.length; j++){
-        if(list_cola.children[j].dataset.value===path_map.dataset.value){
-          list_cola.children[j].classList.remove("soldout");
-        }
+    item_count.innerText-=1;
+    cola_map.set(item_name, cola_map.get(item_name)-1);
+  }
+
+  if(cola_map.get(item_name)<=5){
+    for(let j=0; j<list_cola.children.length; j++){
+      if(list_cola.children[j].dataset.value===item_name){
+        list_cola.children[j].classList.remove("soldout");
       }
     }
   }
-})
-
-
-
-
-function createGetHTMLString(item){
-  let className = item.target.classList.value;
-  let arr = className.split("");
-  arr.splice(0,5);
-  className = arr.join("");
-
-  return `
-  <div data-value="${className}" class="con-cola">
-            <img
-              src="./images/${className}_cola.svg"
-              width="18px"
-              height="33px"
-              alt="${className} cola"
-              class="img-cola"
-            />
-            <p class="txt-colaName voucher">${className}_cola</p>
-            <p class="txt-colaCount"></p>
-  `
 }
 
 // 입금 클릭시 잔액 변경.
@@ -165,6 +142,7 @@ btn_getCola.addEventListener('click', () =>{
   for(let i=0; i<con_getCola.children.length; i++){
     totalCount += parseInt(con_getCola.children[i].children[2].innerText);
   }
+
   if(totalCount*1000>parseInt(txt_balance.textContent)){
     alert("잔액이 부족합니다.")
    } else if(con_getCola.children.length === 0){
@@ -192,37 +170,59 @@ const txt_totalPrice = document.querySelector(".txt-totalPrice");
 function totalPrice(){
   let total=0;
   for(let i = 0; i<result.children.length; i++){
-  total+= parseInt(result.children[i].children[2].innerText);
+  total+= parseInt(result.children[i].children[2].textContent);
 }
-  txt_totalPrice.innerText=total*1000;
+  txt_totalPrice.textContent=total*1000;
 }
 
 // 아이템 클릭시 get list에 저장
 const list_cola = document.querySelector(".list-cola");
 let obj ={};
 list_cola.addEventListener('click', event=>{
-  const clicked_value = event.target.dataset.value;
+  const clicked_cola = event.target.dataset.value;
   // 아이템 밖에 클릭시 동작 예외처리
       if(event.target.localName==="ul"){
         return
       } else{
         // 잔액이 없는 경우 콜라 선택 불가.
         if(parseInt(txt_balance.textContent)>=1000){
-          Object.keys(obj).includes(clicked_value) ? changeItemCount(clicked_value) : newItem(clicked_value, event);
+          Object.keys(obj).includes(clicked_cola) ? changeItemCount(clicked_cola) : newItem(clicked_cola, event);
         }
-     }
-    })
+      }
+  }
+)
 
-function changeItemCount(clicked_value){
-  obj[clicked_value]=1;
-  itemCount(clicked_value);
+function changeItemCount(clicked_cola){
+  obj[clicked_cola]=1;
+  itemCount(clicked_cola);
 }
 
-function newItem(clicked_value, event){
-  obj[clicked_value]=1;
-  displayGetItem(event);
-  itemCount(clicked_value);
+function newItem(clicked_cola, event){
+  obj[clicked_cola]=1;
+  con_getCola.insertAdjacentHTML("afterbegin", createGetHTMLString(event));
+  itemCount(clicked_cola);
 }
+
+function createGetHTMLString(item){
+  let className = item.target.classList.value;
+  let arr = className.split("");
+  arr.splice(0,5);
+  className = arr.join("");
+
+  return `
+  <div data-value="${className}" class="con-cola">
+            <img
+              src="./images/${className}_cola.svg"
+              width="18px"
+              height="33px"
+              alt="${className} cola"
+              class="img-cola"
+            />
+            <p class="txt-colaName voucher">${className}_cola</p>
+            <p class="txt-colaCount"></p>
+  `
+}
+
 
 // json 함수 호출
 getJson()
