@@ -34,33 +34,31 @@ function createMainHTMLString(item){
 const con_getCola = document.querySelector(".con-getCola");
 
 // 선택한 콜라 수량 변경.
-function itemCount(colaName) {
-  //get list에 동일 item이 있는 경우 최대 재고까지 수량만 변경. 
+function itemCount(item_name) {
+  //get list에 동일 item이 있는 경우 수량 변경.
+  cola_obj[item_name] ? cola_obj[item_name]+=1 : cola_obj[item_name]=1;
+  
   // 5개 이상 선택시 품절
-    if(cola_obj[colaName]){
-      cola_obj[colaName]+=1;
-    } 
-    else{
-      cola_obj[colaName]=1;
-    }
-    
-    if(cola_obj[colaName]>=5){
-      soldOut(colaName);
+    if(cola_obj[item_name]>=5){
+      soldOut(item_name, cola_obj[item_name]);
     }
 
     // 콜라 수량 변경 요청 온 콜라 이름과 기존에 등록된 콜라들 중 맞는 이름을 찾아 해당 콜라 수량을 변경.
     for(let i=0; i<con_getCola.children.length; i++){
-      if(con_getCola.children[i].dataset.value===colaName){
-        con_getCola.children[i].lastElementChild.innerText=cola_obj[colaName];
+      if(con_getCola.children[i].dataset.value===item_name){
+        con_getCola.children[i].lastElementChild.innerText=cola_obj[item_name];
       }
-  }
+    }
 }
 
-function soldOut(colaName){
-  cola_obj[colaName]=5;
+function soldOut(colaName, colaCount){
   for(let j=0; j<list_cola.children.length; j++){
     if(list_cola.children[j].dataset.value===colaName){
-      list_cola.children[j].classList.add("soldout");
+      if(colaCount>=5){
+        list_cola.children[j].classList.add("soldout");
+    } else{
+      list_cola.children[j].classList.remove("soldout");
+    }
     }
   }
 }
@@ -86,11 +84,7 @@ function getListItemCount(event){
   }
 
   if(cola_obj[item_name]<=5){
-    for(let j=0; j<list_cola.children.length; j++){
-      if(list_cola.children[j].dataset.value===item_name){
-        list_cola.children[j].classList.remove("soldout");
-      }
-    }
+    soldOut(item_name, cola_obj[item_name]);
   }
 }
 
