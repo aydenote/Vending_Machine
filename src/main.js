@@ -159,14 +159,12 @@ let cola_obj ={};
 list_cola.addEventListener('click', event=>{
   const clicked_cola = event.target.dataset.value;
   // 아이템 밖에 클릭시 동작 예외처리
-      if(event.target.localName==="ul"){
-        return
-      } else{
-        // 잔액이 없는 경우 콜라 선택 불가.
+      if(event.target.localName!=="ul"){
+         // 잔액이 없는 경우 콜라 선택 불가.
         if(parseInt(txt_balance.textContent)>=1000){
           Object.keys(cola_obj).includes(clicked_cola) ? itemCount(clicked_cola) : newItem(clicked_cola, event);
         }
-      }
+      } 
   }
 )
 
@@ -194,7 +192,6 @@ function createGetHTMLString(item){
             <p class="txt-colaCount"></p>
   `
 }
-
 
 // json 함수 호출
 getJson()
